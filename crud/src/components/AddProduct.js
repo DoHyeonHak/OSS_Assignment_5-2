@@ -54,7 +54,7 @@ const AddProduct = ({ fetchProducts }) => {
       alert("Input category");
       categoryCheck.current.focus();
       bool = false;
-    } else if (!newProduct.stock || newProduct.stock <= 0) {
+    } else if (!newProduct.stock) {
       alert("Input stock");
       stockCheck.current.focus();
       bool = false;
