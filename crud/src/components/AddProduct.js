@@ -1,12 +1,10 @@
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
 import "bootstrap/dist/css/bootstrap.min.css";
+import { useNavigate } from "react-router-dom";
+
+// reference : https://velog.io/@imzzuu/React-Input-control-과-useRef의-적절한-사용-Input-유효성-검사
 
 const AddProduct = ({ fetchProducts }) => {
-  // useState는 react에서 componenet 상태를 관리한다.
-  const [products, setProducts] = useState([]); // Product list
-  const [loading, setLoading] = useState(true); // 로딩 상태 관리 : API에서 데이터가 로딩 중일 때
-  //   const [showAddModal, setShowAddModal] = useState(false); // false로 한 이유는 시작부터 modal이 열리진 않기 때문
-  //   const [showUpdateModal, setShowUpdateModal] = useState(false); // 위와 동일
   const [newProduct, setNewProduct] = useState({
     // product 추가 위해
     name: "",
@@ -15,9 +13,7 @@ const AddProduct = ({ fetchProducts }) => {
     stock: "",
   });
 
-  useEffect(() => {
-    fetchProducts();
-  }, []);
+  const navigate = useNavigate(); // hook : 페이지 전환에 용이. onclick, window.href로도 할 수 있긴 하나, 이것도 훅이니 사용
 
   // Product 추가 기능
   const addProduct = () => {
@@ -28,8 +24,9 @@ const AddProduct = ({ fetchProducts }) => {
     })
       .then((response) => {
         if (response.ok) {
+          console.log("Product added successfully");
           setNewProduct({ name: "", price: "", category: "", stock: "" });
-          fetchProducts();
+          navigate("/list"); // useNavigate Hook
         }
       })
       .catch((error) => {
@@ -37,8 +34,13 @@ const AddProduct = ({ fetchProducts }) => {
       });
   };
 
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    addProduct();
+  };
+
   return (
-    <div>
+    <div className="container">
       <h2>Add New Product</h2>
       <form onSubmit={handleSubmit}>
         <input

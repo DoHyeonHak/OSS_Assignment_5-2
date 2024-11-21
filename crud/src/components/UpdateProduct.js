@@ -1,37 +1,28 @@
 import React, { useState, useEffect } from "react";
+import { useParams, useNavigate } from "react-router-dom";
 import "bootstrap/dist/css/bootstrap.min.css";
 
-const UpdateProduct = ({ fetchProducts }) => {
-  // useState는 react에서 componenet 상태를 관리한다.
-  const [products, setProducts] = useState([]); // Product list
-  const [loading, setLoading] = useState(true); // 로딩 상태 관리 : API에서 데이터가 로딩 중일 때
+const UpdateProduct = () => {
+  const { id } = useParams(); // 아이디를 가져온다.
+
   const [currentProduct, setCurrentProduct] = useState({
-    // product 수정 위해
-    id: "",
     name: "",
     price: "",
     category: "",
     stock: "",
   });
 
-  useEffect(() => {
-    fetchProducts();
-  }, []);
+  const navigate = useNavigate();
 
-  // Product 수정 기능
   const updateProduct = () => {
-    fetch(
-      `https://672883cb270bd0b97555dbc6.mockapi.io/products/${currentProduct.id}`,
-      {
-        method: "PUT",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify(currentProduct),
-      }
-    )
+    fetch(`https://672883cb270bd0b97555dbc6.mockapi.io/products/${id}`, {
+      method: "PUT",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify(currentProduct),
+    })
       .then((response) => {
         if (response.ok) {
-          setShowUpdateModal(false);
-          fetchProducts();
+          navigate("/list"); // useNavigate Hook
         }
       })
       .catch((error) => {
@@ -39,8 +30,13 @@ const UpdateProduct = ({ fetchProducts }) => {
       });
   };
 
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    updateProduct();
+  };
+
   return (
-    <div>
+    <div className="container">
       <h2>Update Product</h2>
       <form onSubmit={handleSubmit}>
         <input

@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from "react";
+import { Link } from "react-router-dom";
 
 const DeleteProduct = (id, fetchProducts) => {
   if (window.confirm("Are you sure you want to delete this product?")) {
