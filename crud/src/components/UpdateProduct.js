@@ -12,7 +12,7 @@ const UpdateProduct = () => {
     stock: "",
   });
 
-  const navigate = useNavigate();
+  const navigate = useNavigate(); // /list로 넘기기 위해 사용한 훅
 
   const updateProduct = () => {
     fetch(`https://672883cb270bd0b97555dbc6.mockapi.io/products/${id}`, {

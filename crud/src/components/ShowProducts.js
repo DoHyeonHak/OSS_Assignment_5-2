@@ -70,11 +70,12 @@ const ShowProducts = () => {
               <div className="col">{product.category}</div>
               <div className="col">
                 <Link
-                  to={`/datail/${product.id}`}
-                  className="btn btn-info btn-sm text-white"
+                  to={`/detail/${product.id}`}
+                  className="btn btn-secondary btn-sm text-white"
                 >
                   Detail
                 </Link>
+
                 <Link
                   to={`/update/${product.id}`}
                   className="btn btn-info btn-sm text-white"
