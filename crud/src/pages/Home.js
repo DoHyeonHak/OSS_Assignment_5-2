@@ -10,10 +10,10 @@ const Home = () => {
         flexDirection: "column",
         justifyContent: "center",
         alignItems: "center",
-        height: "100vh", // 화면 중앙 정렬
+        height: "100vh",
       }}
     >
-      <h1>Welcome to my Product Management Homepage</h1>
+      <h1>Welcome to My Product Management Homepage</h1>
       <div style={{ marginTop: "20px" }}>
         <Link
           to="/list"

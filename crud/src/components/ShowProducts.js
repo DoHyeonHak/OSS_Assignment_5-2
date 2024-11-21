@@ -2,12 +2,10 @@ import React, { useState, useEffect } from "react";
 import "bootstrap/dist/css/bootstrap.min.css";
 import DeleteProduct from "./DeleteProduct";
 import { Link } from "react-router-dom";
-import { useNavigate } from "react-router-dom";
 
 const ShowProducts = () => {
   const [products, setProducts] = useState([]);
   const [loading, setLoading] = useState(true);
-  const [currentProduct, setCurrentProduct] = useState(null);
 
   useEffect(() => {
     fetchProducts();
@@ -72,17 +70,17 @@ const ShowProducts = () => {
               <div className="col">{product.category}</div>
               <div className="col">
                 <Link
+                  to={`/datail/${product.id}`}
+                  className="btn btn-info btn-sm text-white"
+                >
+                  Detail
+                </Link>
+                <Link
                   to={`/update/${product.id}`}
                   className="btn btn-info btn-sm text-white"
                 >
                   Modify
                 </Link>
-                {/* <button
-                  className="btn btn-info btn-sm text-white"
-                  onClick={() => setCurrentProduct(product)}
-                >
-                  Modify
-                </button> */}
                 <button
                   className="btn btn-danger btn-sm"
                   onClick={() => DeleteProduct(product.id, fetchProducts)}
