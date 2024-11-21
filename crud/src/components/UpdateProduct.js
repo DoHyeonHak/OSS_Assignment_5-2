@@ -1,5 +1,5 @@
 import React, { useState, useRef } from "react";
-import { useParams, useNavigate } from "react-router-dom";
+import { useParams, useNavigate, Link } from "react-router-dom";
 import "bootstrap/dist/css/bootstrap.min.css";
 
 const UpdateProduct = () => {
@@ -112,6 +112,9 @@ const UpdateProduct = () => {
         <button type="submit" className="btn btn-primary">
           Update Product
         </button>
+        <Link to="/list" className="btn btn-secondary">
+          Cancel
+        </Link>
       </form>
     </div>
   );

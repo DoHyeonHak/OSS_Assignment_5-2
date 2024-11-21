@@ -1,6 +1,6 @@
 import React, { useState, useRef } from "react";
 import "bootstrap/dist/css/bootstrap.min.css";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, Link } from "react-router-dom";
 
 // reference : https://velog.io/@imzzuu/React-Input-control-과-useRef의-적절한-사용-Input-유효성-검사
 
@@ -116,6 +116,9 @@ const AddProduct = ({ fetchProducts }) => {
         <button type="submit" className="btn btn-primary">
           Add Product
         </button>
+        <Link to="/list" className="btn btn-secondary">
+          Cancel
+        </Link>
       </form>
     </div>
   );
